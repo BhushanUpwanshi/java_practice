@@ -169,7 +169,7 @@ public class FruitUtility {
 				break;
 				
 			case 7:
-				for(int i=0;i<fr.length;i++) {
+				for(int i=0;i<(count-1);i++) {
 					if (fr[i].getTaste().equals("Sour")){
 						fr[i].setFresh(false);
 					}
