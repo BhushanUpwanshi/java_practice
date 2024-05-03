@@ -2,7 +2,7 @@ package customerservicemanagement;
 
 import java.time.LocalDate;
 
-public class Customer {
+public class Customer implements Comparable<Customer>{
 //	customer id : int
 //	Store - first name, last name email(string),password(string),registrationAmount(double),dob(LocalDate),plan(ServicePlan : enum)
 //	Unique ID - email
@@ -29,6 +29,11 @@ public class Customer {
 		this.splan = splan;
 	}
 	
+	public Customer(String email) {
+		this.email=email;
+	}
+	
+	
 	public String getPassword() {
 		return this.password;
 	}
@@ -36,8 +41,14 @@ public class Customer {
 		this.password=password;
 	}
 	
-	public Customer(String email) {
-		this.email=email;
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Customer [customer_id=" + customer_id + ", fname=" + fname + ", lname=" + lname + ", email=" + email
+				+ ", password=" + password + ", dob=" + dob + ", regiAmount=" + regiAmount +"Service Plan = "+splan+"]";
 	}
 	
 	@Override 
@@ -52,10 +63,12 @@ public class Customer {
 		return false;
 	}
 	
-	@Override
-	public String toString() {
-		return "Customer [customer_id=" + customer_id + ", fname=" + fname + ", lname=" + lname + ", email=" + email
-				+ ", password=" + password + ", dob=" + dob + ", regiAmount=" + regiAmount +"Service Plan = "+splan+"]";
+	@Override 
+	public int compareTo(Customer custTemp)
+	{
+		return (this.email).compareTo(custTemp.email);
 	}
+	
+	
 	
 }

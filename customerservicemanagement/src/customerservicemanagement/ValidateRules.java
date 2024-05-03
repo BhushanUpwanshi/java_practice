@@ -1,7 +1,9 @@
 package customerservicemanagement;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
+import static utils.passContainCheck.*;
 
 public class ValidateRules {
 	
@@ -21,20 +23,23 @@ public class ValidateRules {
 		throw new CustomerExceptions("---------invalid Service plan or registration amount ----------");
 	}
 	
+	
+	// parse and check if user is minor
 	public static LocalDate validateDob(String dob) throws CustomerExceptions{
-		try {
-		return LocalDate.parse(dob);
-		}catch(Exception e) {
-			throw new CustomerExceptions("----------Invalid date-----------");
-		}
+		LocalDate Dob = LocalDate.parse(dob);
+		int age = Period.between(Dob ,LocalDate.now()).getYears();
+		if(age>20)
+			return Dob;
+		throw new CustomerExceptions("---------Invalid Date--------");
 	}
 	
-	
+	//validation rules
 	public static Customer ValidateDetails(String fname, String lname, String email, String password, String dob, double regiAmount,
 			String splan,List<Customer> custList) throws CustomerExceptions {
 		validateDupCust(email,custList);
 		LocalDate dt =validateDob(dob);
 		ServicePlan sp =validatePlan(splan,regiAmount);
+		PassCheck(password);
 		return new Customer(fname,lname,email, password, dt, regiAmount, sp);
 	}
 	
