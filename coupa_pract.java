@@ -115,3 +115,21 @@ public class Main
 }
 
 -------------------------
+public class Main
+{
+    public static String fun(String s){
+        String[] str=s.split(" +");
+        String temp="";
+        int n=str.length-1, a=0,e=n;
+        while(a <= n/2 && e >= n/2){
+            if(str[a++].equals(str[e--]))
+                temp+=str[a-1]+" ";
+        }
+        return temp;
+    }
+	public static void main(String[] args) {
+		String s="execute to button to button to execute";
+		System.out.println(fun(s));
+	}
+}
+------------------------------
